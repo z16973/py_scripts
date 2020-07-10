@@ -6,7 +6,9 @@ on:
   pull_request:
     branches: [ master ]
   schedule:
-    - cron: 0 2,14 * * *
+    # 时间是按UTC设置的，实际执行时间，则自动按东八区执行
+    # 即+8小时，故实际执行时间为：8点，20点
+    - cron: 0 0,12 * * *
 
 jobs:
   build:
