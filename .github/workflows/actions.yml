@@ -50,19 +50,19 @@ jobs:
     #    pytest nothing.py
     
     # 天翼云盘签到+抽奖
-    - name: Cloud 189 Checkin
-      env:
-        CLOUD189_USER: ${{ secrets.CLOUD189_USER }}
-        CLOUD189_PWD: ${{ secrets.CLOUD189_PWD }}
-      run: |
-        bash scripts/_C189.sh
+#     - name: Cloud 189 Checkin
+#       env:
+#         CLOUD189_USER: ${{ secrets.CLOUD189_USER }}
+#         CLOUD189_PWD: ${{ secrets.CLOUD189_PWD }}
+#       run: |
+#         bash scripts/_C189.sh
     
     # HostLoc 赚积分
-    - name: 'HostLoc Get points'
-      env:
-        HOSTLOC_USERNAME: ${{ secrets.HOSTLOC_USERNAME }}
-        HOSTLOC_PASSWORD: ${{ secrets.HOSTLOC_PASSWORD }}
-      run: python scripts/hostloc/hostloc_get_points.py
+#     - name: 'HostLoc Get points'
+#       env:
+#         HOSTLOC_USERNAME: ${{ secrets.HOSTLOC_USERNAME }}
+#         HOSTLOC_PASSWORD: ${{ secrets.HOSTLOC_PASSWORD }}
+#       run: python scripts/hostloc/hostloc_get_points.py
     
     # TextNow保号任务
     - name: textnow protect number
