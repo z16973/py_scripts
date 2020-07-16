@@ -62,6 +62,9 @@ jobs:
     # HostLoc 赚积分
     - name: 'HostLoc Get points'
       env:
+        HOSTLOC_COOKIE_SALTKEY : ${{ secrets.HOSTLOC_COOKIE_SALTKEY  }}
+        HOSTLOC_COOKIE_AUTH: ${{ secrets.HOSTLOC_COOKIE_AUTH }}
+        NOTIFY_URL: ${{ secrets.NOTIFY_URL }}
         HOSTLOC_USERNAME: ${{ secrets.HOSTLOC_USERNAME }}
         HOSTLOC_PASSWORD: ${{ secrets.HOSTLOC_PASSWORD }}
       run: python scripts/hostloc/hostloc_get_points.py
