@@ -1,7 +1,7 @@
 name: py_scripts
  
 on:
-  push:
+  push: 
     branches: [ master ]
   pull_request:
     branches: [ master ]
