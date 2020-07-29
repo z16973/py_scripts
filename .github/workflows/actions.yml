@@ -1,13 +1,15 @@
 name: py_scripts
- 
+
 on:
-  push: 
+  push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule: 
-    - cron: 0 2,14 * * *
- 
+  schedule:
+    # 时间是按UTC设置的，实际执行时间，则自动按东八区执行
+    # 即+8小时，故实际执行时间为：8点，20点
+    - cron: 0 0,12 * * *
+
 jobs:
   build:
 
@@ -60,6 +62,9 @@ jobs:
     # HostLoc 赚积分
     - name: 'HostLoc Get points'
       env:
+        HOSTLOC_COOKIE_SALTKEY : ${{ secrets.HOSTLOC_COOKIE_SALTKEY  }}
+        HOSTLOC_COOKIE_AUTH: ${{ secrets.HOSTLOC_COOKIE_AUTH }}
+        NOTIFY_URL: ${{ secrets.NOTIFY_URL }}
         HOSTLOC_USERNAME: ${{ secrets.HOSTLOC_USERNAME }}
         HOSTLOC_PASSWORD: ${{ secrets.HOSTLOC_PASSWORD }}
       run: python scripts/hostloc/hostloc_get_points.py
