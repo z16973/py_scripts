@@ -1,8 +1,8 @@
 name: py_scripts
 
 on:
-  #push:
-  #  branches: [ master ]
+  push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   schedule:
@@ -83,11 +83,14 @@ jobs:
         echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
     - name: Commit #上传到仓库
       run: |
-        git config --global user.email AutoupdateRobot@email.com
-        git config --global user.name AutoupdateRobot
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git add .
-        git commit -m "update new push" -a
+        git diff --quiet && git diff --staged --quiet || git commit -m "update new push" -a
+        echo ::set-output name=status::success
     - name: Push changes
+      if: steps.commit.output.status != 'success'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
